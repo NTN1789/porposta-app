@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import service.PropostaService;
 
 
 @RestController
 @RequestMapping("/proposta")
 public class PropostaController {
-  //  private PropostaService propostaService;
+   private PropostaService propostaService;
 
     @PostMapping
     public ResponseEntity<PropostaResponseDto> criar(@RequestBody PropostaRequestDto requestDto) {
