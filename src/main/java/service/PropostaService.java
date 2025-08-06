@@ -1,7 +1,5 @@
 package service;
 
-import dto.PropostaRequestDto;
-import dto.PropostaResponseDto;
 import org.springframework.stereotype.Service;
 
 @Service

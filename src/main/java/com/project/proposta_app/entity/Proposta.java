@@ -1,4 +1,4 @@
-package entity;
+package com.project.proposta_app.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

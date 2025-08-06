@@ -1,4 +1,4 @@
-package dto;
+package com.project.proposta_app.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PropostaResponseDto {
-    private Long id;
-
+public class PropostaRequestDto {
     private String nome;
 
     private String sobrenome;
@@ -22,11 +20,7 @@ public class PropostaResponseDto {
 
     private Double renda;
 
-    private String valorSolicitadoFmt;
+    private Double valorSolicitado;
 
     private int prazoPagamento;
-
-    private Boolean aprovada;
-
-    private String observacao;
 }

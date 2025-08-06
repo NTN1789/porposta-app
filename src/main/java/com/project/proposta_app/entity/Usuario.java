@@ -1,4 +1,4 @@
-package entity;
+package com.project.proposta_app.entity;
 
 import jakarta.persistence.*;
 
