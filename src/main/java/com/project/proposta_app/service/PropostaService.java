@@ -1,4 +1,4 @@
-package service;
+package com.project.proposta_app.service;
 
 import com.project.proposta_app.dto.PropostaRequestDto;
 import com.project.proposta_app.dto.PropostaResponseDto;

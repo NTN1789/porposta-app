@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import service.PropostaService;
+import com.project.proposta_app.service.PropostaService;
 
 import java.util.List;
 
@@ -19,11 +19,12 @@ public class PropostaController {
     @PostMapping
     public ResponseEntity<PropostaResponseDto> criar(@RequestBody PropostaRequestDto requestDto) {
         PropostaResponseDto response = propostaService.criar(requestDto);
-        return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
-                        .path("/{id}")
-                        .buildAndExpand(response.getId())
+       return ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest()
+                       .path("/{id}")
+                       .buildAndExpand(response.getId())
                         .toUri())
                 .body(response);
+
     }
 
 

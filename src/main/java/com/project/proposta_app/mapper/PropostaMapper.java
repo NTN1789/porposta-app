@@ -30,12 +30,16 @@ public interface PropostaMapper {
     @Mapping(target = "telefone", source = "usuario.telefone")
     @Mapping(target = "cpf", source = "usuario.cpf")
     @Mapping(target = "renda", source = "usuario.renda")
-    @Mapping(target = "valorSolicitadoFmt", expression = "java(setValorSolicitadoFmt(proposta))")
+   // @Mapping(target = "valorSolicitadoFmt", expression = "java(setValorSolicitadoFmt(proposta))")
     PropostaResponseDto convertEntityToDto(Proposta proposta);
 
     List<PropostaResponseDto> convertListEntityToListDto(Iterable<Proposta> propostas);
 
-    default String setValorSolicitadoFmt(Proposta proposta) {
+  /*  default String setValorSolicitadoFmt(Proposta proposta) {
         return NumberFormat.getCurrencyInstance().format(proposta.getValorSolicitado());
     }
+*/
+
+
 }
+

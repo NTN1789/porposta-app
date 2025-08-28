@@ -1,8 +1,12 @@
 package com.project.proposta_app.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "tb_usuario")
 public class Usuario {
     @Id
