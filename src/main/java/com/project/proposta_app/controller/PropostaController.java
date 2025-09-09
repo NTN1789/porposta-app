@@ -27,11 +27,9 @@ public class PropostaController {
 
     }
 
-
     @GetMapping
     public ResponseEntity<List<PropostaResponseDto>> obterProposta() {
-      //  return ResponseEntity.ok(propostaService.obterProposta());
-        return  null;
+        return ResponseEntity.ok(propostaService.obterProposta());
     }
 
 }
