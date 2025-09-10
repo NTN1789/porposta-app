@@ -1,13 +1,17 @@
 package com.project.proposta_app.Config;
 
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.core.QueueBuilder;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfiguration {
+    private String exchangePropostaPendente;
+    private String exchangePropostaConcluida;
 
     @Bean
     public Queue criarFilaPropostaPendenteMsAnaliseCredito(){
@@ -29,9 +33,59 @@ public class RabbitMQConfiguration {
         return QueueBuilder.durable("proposta-concluida.ms-notificacao").build();
     }
 
-    private ConnectionFactory connectionFactory;
+// importante para criar as filas para as queues and Steams
+    @Bean
+    public RabbitAdmin criarRabbitAdmin(ConnectionFactory connectionFactory){
+    return  new RabbitAdmin(connectionFactory);
 
-    public RabbitMQConfiguration(ConnectionFactory connectionFactory) {
-        this.connectionFactory = connectionFactory;
     }
+    // importante para criar as filas para as queues and Steams
+    @Bean
+    public ApplicationListener<ApplicationReadyEvent> inicializarAdmin(RabbitAdmin rabbitAdmin) {
+    return  event ->  rabbitAdmin.initialize();
+    }
+
+
+
+
+    // criando exchanges
+    @Bean
+    public FanoutExchange criarFanoutExchangePropostaPendente(){
+        return ExchangeBuilder.fanoutExchange("proposta-pendente.ex").build();
+    }
+
+    @Bean
+    public FanoutExchange criarFanoutExchangePropostaConcluida() {
+        return ExchangeBuilder.fanoutExchange(exchangePropostaConcluida).build();
+    }
+
+
+    // criando o Binding da aplicação
+
+    @Bean
+    public Binding criarBindingPropostaPendenteMSAnaliseCredito(){
+        return  BindingBuilder.bind(criarFilaPropostaPendenteMsAnaliseCredito()).to(criarFanoutExchangePropostaPendente());
+    }
+
+
+    @Bean
+    public Binding criarBindingPropostaPendenteMSNotificacao() {
+        return BindingBuilder.bind(criarFilaPropostaPendenteMsNotificacao()).
+                to(criarFanoutExchangePropostaPendente());
+    }
+
+    @Bean
+    public Binding criarBindingPropostaConcluidaMSPropostaApp() {
+        return BindingBuilder.bind(criarFilaPropostaConcluidaMsProposta()).
+                to(criarFanoutExchangePropostaConcluida());
+    }
+
+    @Bean
+    public Binding criarBindingPropostaConcluidaMSNotificacao() {
+        return BindingBuilder.bind(criarFilaPropostaConcluidaMsNotificacao()).
+                to(criarFanoutExchangePropostaConcluida());
+    }
+
+
+
 }
