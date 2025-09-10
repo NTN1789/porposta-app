@@ -7,10 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+//@Getter
+//@Setter
 @Entity
 @Table(name = "tb_proposta")
 public class Proposta {
@@ -20,8 +22,9 @@ public class Proposta {
     private Long id;
 
 
-    @Column(name = "valorsolicitado")
-    private Double valorSolicitado;
+
+    //private Double valorSolicitado;
+    private BigDecimal valorSolicitado;
 
     private int prazoPagamento;
 
@@ -35,4 +38,61 @@ public class Proposta {
     @JoinColumn(name = "id_usuario")
     @JsonManagedReference
     private Usuario usuario;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public BigDecimal getValorSolicitado() {
+        return valorSolicitado;
+    }
+
+    public void setValorSolicitado(BigDecimal valorSolicitado) {
+        this.valorSolicitado = valorSolicitado;
+    }
+
+    public int getPrazoPagamento() {
+        return prazoPagamento;
+    }
+
+    public void setPrazoPagamento(int prazoPagamento) {
+        this.prazoPagamento = prazoPagamento;
+    }
+
+    public Boolean getAprovada() {
+        return aprovada;
+    }
+
+    public void setAprovada(Boolean aprovada) {
+        this.aprovada = aprovada;
+    }
+
+    public boolean isIntegrada() {
+        return integrada;
+    }
+
+    public void setIntegrada(boolean integrada) {
+        this.integrada = integrada;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

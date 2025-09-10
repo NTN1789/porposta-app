@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,7 +22,7 @@ public class PropostaRequestDto {
 
     private Double renda;
 
-    private Double valorSolicitado;
-
+  //  private Double valorSolicitado;
+  private BigDecimal valorSolicitado;
     private int prazoPagamento;
 }
