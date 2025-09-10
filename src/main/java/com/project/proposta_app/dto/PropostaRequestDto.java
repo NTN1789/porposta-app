@@ -22,7 +22,7 @@ public class PropostaRequestDto {
 
     private Double renda;
 
-  //  private Double valorSolicitado;
+
   private BigDecimal valorSolicitado;
     private int prazoPagamento;
 }

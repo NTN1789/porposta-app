@@ -31,7 +31,7 @@ public class PropostaResponseDto {
     private String observacao;
 
 
-  /*  public Long getId() {
+  /*public Long getId() {
         return id;
     }
 

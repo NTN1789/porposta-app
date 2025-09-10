@@ -11,8 +11,8 @@ import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
-//@Getter
-//@Setter
+@Getter
+@Setter
 @Entity
 @Table(name = "tb_proposta")
 public class Proposta {
@@ -40,7 +40,7 @@ public class Proposta {
     private Usuario usuario;
 
 
-    public Long getId() {
+  /*  public Long getId() {
         return id;
     }
 
@@ -95,4 +95,5 @@ public class Proposta {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+*/
 }
