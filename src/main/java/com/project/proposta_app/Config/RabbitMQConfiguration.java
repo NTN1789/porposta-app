@@ -2,6 +2,7 @@ package com.project.proposta_app.Config;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.QueueBuilder;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,5 +27,11 @@ public class RabbitMQConfiguration {
     @Bean
     public Queue criarFilaPropostaConcluidaMsNotificacao(){
         return QueueBuilder.durable("proposta-concluida.ms-notificacao").build();
+    }
+
+    private ConnectionFactory connectionFactory;
+
+    public RabbitMQConfiguration(ConnectionFactory connectionFactory) {
+        this.connectionFactory = connectionFactory;
     }
 }
