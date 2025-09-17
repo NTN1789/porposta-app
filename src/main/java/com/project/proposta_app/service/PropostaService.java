@@ -16,6 +16,7 @@ public class PropostaService {
 
 
 private PropostaRepository propostaRepository;
+private  NotificacaoService notificacaoService;
 
     public PropostaResponseDto criar(PropostaRequestDto requestDto) {
         Proposta proposta = PropostaMapper.INSTANCE.convertDtoToProposta(requestDto);
@@ -23,7 +24,11 @@ private PropostaRepository propostaRepository;
 
    //     notificarRabbitMQ(proposta);
 
-        return PropostaMapper.INSTANCE.convertEntityToDto(proposta);
+       // return PropostaMapper.INSTANCE.convertEntityToDto(proposta);
+         PropostaResponseDto response = PropostaMapper.INSTANCE.convertEntityToDto(proposta);
+    notificacaoService.notificar(response, "proposta-pendente.ex");
+         return  response;
+
 
 
     }
